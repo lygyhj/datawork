@@ -1,0 +1,57 @@
+<view class="container">
+  <!-- 搜索栏 -->
+  <view class="search-box">
+    <input 
+      placeholder="输入要搜索的内容" 
+      class="search-input" 
+      bindinput="onSearchInput"
+      bindconfirm="doSearch"
+      value="{{searchKeyword}}"
+    />
+    <button bindtap="doSearch" class="search-btn">搜索</button>
+  </view>
+
+  <!-- 帖子列表 -->
+  <scroll-view class="post-list" scroll-y>
+    <block wx:for="{{postList}}" wx:key="_id">
+      <view class="post-item">
+        <!-- 用户信息 -->
+        <view class="post-header">
+          <image src="{{item.avatarUrl || '/images/default-avatar.png'}}" class="avatar"></image>
+          <view class="user-info">
+            <text class="username">{{item.author || '微信用户'}}</text>
+            <text class="post-time">{{formatTime(item.date)}}</text>
+          </view>
+        </view>
+        
+        <!-- 帖子内容 -->
+        <view class="post-content">
+          <text>{{item.content}}</text>
+        </view>
+        
+        <!-- 图片展示 -->
+        <view wx:if="{{item.tempImagePath}}" class="post-image">
+          <image src="{{item.tempImagePath}}" mode="aspectFill"></image>
+        </view>
+        
+        <!-- 底部信息 -->
+        <view class="post-footer">
+          <text>评论 {{item.commentSize || 0}}</text>
+        </view>
+      </view>
+    </block>
+    
+    <!-- 加载状态 -->
+    <view wx:if="{{loading}}" class="loading">搜索中...</view>
+    
+    <!-- 空状态 -->
+    <view wx:if="{{!loading && postList.length === 0 && searchKeyword}}" class="empty-tips">
+      <text>没有找到包含"{{searchKeyword}}"的帖子</text>
+    </view>
+  </scroll-view>
+</view>
+
+<!-- 底部Tab栏 -->
+<view class='tabs'>
+  <w-tabs bind:onChange="handleChange" currentIndex="2" options="{{tabs1}}" line="{{false}}"/>
+</view>

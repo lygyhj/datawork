@@ -1,0 +1,1 @@
+{"version":3,"sources":["index.cjs.js","cjs/index.cjs.js"],"names":[],"mappings":";;;;;;;AAAA;AACA;;ACDA;AACA;AACA","file":"index.js","sourcesContent":["module.exports = require('./cjs/index.cjs.js');\n","\n\n"]}

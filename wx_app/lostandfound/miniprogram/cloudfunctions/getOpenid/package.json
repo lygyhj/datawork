@@ -1,0 +1,9 @@
+{
+  "name": "getopenid",
+  "version": "1.0.0",
+  "description": "云函数获取用户 OpenID",
+  "main": "index.js",
+  "dependencies": {
+    "wx-server-sdk": "^2.7.0"
+  }
+}
